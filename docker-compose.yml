@@ -1,0 +1,41 @@
+services:
+
+  # Postgres database1 container
+  postgres-database:
+    image: postgres
+    container_name: multi-datasource-database1
+    ports:
+      - 5437:5432
+    volumes:
+      - multi-datasource-database1:/data/postgres
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
+    networks:
+      - multi-datasource-postgres
+    restart: unless-stopped
+
+  # Postgres database2 container
+  postgres-database-authentication:
+    image: postgres
+    container_name: multi-datasource-database2
+    ports:
+      - 5438:5432
+    volumes:
+      - multi-datasource-database2:/data/postgres
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
+    networks:
+      - multi-datasource-postgres
+    restart: unless-stopped
+
+networks:
+  multi-datasource-postgres:
+    driver: bridge
+
+volumes:
+  multi-datasource-database1:
+  multi-datasource-database2:
