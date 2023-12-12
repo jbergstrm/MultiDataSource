@@ -19,7 +19,7 @@ import java.util.UUID;
 public class DataSource1Entity {
 
     @Id
-    @Column(name = "DATASOURCE1_UUID", nullable = false, updatable = false)
+    @Column(name = "UUID", nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
 }
